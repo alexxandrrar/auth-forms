@@ -25,47 +25,60 @@ const RegisterForm = () => {
       console.log(JSON.stringify(values, null, 2));
     },
   });
-  const { handleSubmit, handleChange, values } = formik;
+  const { handleSubmit, handleChange, values, errors, touched } = formik;
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Sign up to</h1>
       <div className="form-item">
-        <label htmlFor="name">Name</label>
+        <label className="item" htmlFor="name">
+          Name
+        </label>
         <input
+          placeholder="Enter your name"
+          className="input"
           id="name"
           name="name"
           type="text"
           onChange={handleChange}
           value={values.name}
         />
-        {formik.touched.name && formik.errors.name ? (
-          <div>{formik.errors.name}</div>
+        {touched.name && errors.name ? (
+          <div className="error">{errors.name}</div>
         ) : null}
       </div>
       <div className="form-item">
-        <label htmlFor="email">Email</label>
+        <label className="item" htmlFor="email">
+          Email
+        </label>
         <input
+          placeholder="Enter your email"
+          className="input"
           id="email"
           name="email"
           type="email"
           onChange={handleChange}
           value={values.email}
         />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
+        {touched.email && errors.email ? (
+          <div className="error">{errors.email}</div>
         ) : null}
       </div>
       <div className="form-item">
-        <label htmlFor="password">Password</label>
+        <label className="item" htmlFor="password">
+          Password
+        </label>
         <input
+          placeholder="Enter your password"
+          className="input"
           id="password"
           name="password"
           type="password"
           onChange={handleChange}
           value={values.password}
         />
-        {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
+        {touched.password && errors.password ? (
+          <div className="error">{errors.password}</div>
         ) : null}
       </div>
       <button className="sumbit-button" type="submit">
