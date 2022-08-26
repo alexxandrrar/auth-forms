@@ -1,22 +1,15 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 import "../index.css";
 import * as Yup from "yup";
 
-const RegisterForm = () => {
-  const navigate = useNavigate();
+const LoginationForm = () => {
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .max(15, "Must be under 15 symbols")
-        .min(2, "Must be more than 2 symbols")
-        .required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
         .required("No password provided.")
@@ -28,27 +21,9 @@ const RegisterForm = () => {
     },
   });
   const { handleSubmit, handleChange, values, errors, touched } = formik;
-
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Sign up to</h1>
-      <div className="form-item">
-        <label className="item" htmlFor="name">
-          Name
-        </label>
-        <input
-          placeholder="Enter your name"
-          className="input"
-          id="name"
-          name="name"
-          type="text"
-          onChange={handleChange}
-          value={values.name}
-        />
-        {touched.name && errors.name ? (
-          <div className="error">{errors.name}</div>
-        ) : null}
-      </div>
+      <h1>Login</h1>
       <div className="form-item">
         <label className="item" htmlFor="email">
           Email
@@ -86,12 +61,9 @@ const RegisterForm = () => {
       <button className="sumbit-button" type="submit">
         Submit
       </button>
-      <h4>Already have an account?</h4>
-      <nav className="nav" onClick={() => navigate("/logination")}>
-        Login
-      </nav>
+      <h4>Forgot your passport?</h4>
     </form>
   );
 };
 
-export default RegisterForm;
+export default LoginationForm;
